@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
   
   constructor(
     public dialog: MatDialog,
-    public contactService: ContactService
+    public contactService: ContactService,
+    private snackBar: MatSnackBar
   ) {
 
   }

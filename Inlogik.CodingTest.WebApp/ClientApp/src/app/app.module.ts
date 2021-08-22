@@ -42,7 +42,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     BrowserAnimationsModule
   ],
   entryComponents: [
-    ContactModalComponent
+    ContactModalComponent,
+    AlertComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
