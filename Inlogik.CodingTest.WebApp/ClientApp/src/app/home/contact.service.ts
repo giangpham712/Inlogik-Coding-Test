@@ -34,7 +34,7 @@ export class ContactService {
         this.contactsSource.next(contacts);
       },
       error => {
-
+        this.alertSource.next('Error occurred adding contacts.');
       }
     );
   }
@@ -55,7 +55,7 @@ export class ContactService {
         this.contactsSource.next(contacts);
       },
       error => {
-
+        this.alertSource.next('Error occurred updating contacts.');
       }
     );
   }
