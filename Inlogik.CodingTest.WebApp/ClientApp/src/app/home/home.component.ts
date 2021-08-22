@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactService.loadContacts();
+    this.contactService.alert$.subscribe(
+      alert => this.showAlert(alert)
+    )
   }
 
   addContact() {
@@ -52,6 +55,12 @@ export class HomeComponent implements OnInit {
       }
 
       this.contactService.updateContact(contact.id, result);
+    });
+  }
+
+  showAlert(message: string) {
+    this.snackBar.open(message, null, {
+      duration: 5000,
     });
   }
 }

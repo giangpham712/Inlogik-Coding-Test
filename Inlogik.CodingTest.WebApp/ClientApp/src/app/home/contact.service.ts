@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs';
 import { ContactApiService } from '../core/services/api/contact-api.service';
-import { AlertComponent } from '../shared/components/alert/alert.component';
 import { Contact } from '../shared/models/contact.model';
 
 @Injectable()
@@ -21,7 +20,10 @@ export class ContactService {
   
   loadContacts() {
     this.contactApi.getList().subscribe(
-      contacts => this.contactsSource.next(contacts)
+      contacts => this.contactsSource.next(contacts),
+      error => {
+        this.alertSource.next('Error occurred loading contacts.');
+      }
     );
   }
 

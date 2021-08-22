@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactListComponent } from './home/contact-list/contact-list.component';
 import { MatButtonModule, MatDialogModule, MatInputModule, MatSnackBarModule, MatTableModule } from '@angular/material';
 import { ContactModalComponent } from './home/contact-modal/contact-modal.component';
-import { AlertComponent } from './shared/components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +19,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     HomeComponent,
 
     ContactListComponent,
-    ContactModalComponent,
-
-    AlertComponent
+    ContactModalComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,8 +39,7 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     BrowserAnimationsModule
   ],
   entryComponents: [
-    ContactModalComponent,
-    AlertComponent
+    ContactModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
