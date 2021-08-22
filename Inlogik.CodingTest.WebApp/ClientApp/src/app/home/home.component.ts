@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+
       this.contactService.addContact(result);
     });
   }
@@ -42,6 +46,10 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+      
       this.contactService.updateContact(contact.id, result);
     });
   }

@@ -20,10 +20,29 @@ export class ContactService {
   }
 
   addContact(contact: Contact) {
-    this.contactApi.add(contact).subscribe();
+    this.contactApi.add(contact).subscribe(
+      createdContact => {
+        const contacts = [ ...this.contactsSource.getValue(), createdContact ];
+        this.contactsSource.next(contacts);
+      }
+    );
   }
 
   updateContact(id: number, contact: Contact) {
-    this.contactApi.update(id, contact).subscribe();
+    this.contactApi.update(id, contact).subscribe(
+      updatedContact => {
+        const contacts = this.contactsSource.getValue().map(
+          c => {
+            if (c.id === updatedContact.id) {
+              return updatedContact;
+            }
+
+            return c;
+          }
+        );
+
+        this.contactsSource.next(contacts);
+      }
+    );
   }
 }
