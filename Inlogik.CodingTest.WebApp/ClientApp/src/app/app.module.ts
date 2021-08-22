@@ -9,7 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactListComponent } from './home/contact-list/contact-list.component';
-import { MatButtonModule, MatDialogModule, MatInputModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatInputModule, MatSnackBarModule, MatTableModule } from '@angular/material';
 import { ContactModalComponent } from './home/contact-modal/contact-modal.component';
 
 @NgModule({
@@ -31,6 +31,7 @@ import { ContactModalComponent } from './home/contact-modal/contact-modal.compon
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    MatSnackBarModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

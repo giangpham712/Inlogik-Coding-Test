@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using FluentValidation;
+using Inlogik.CodingTest.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,12 +31,27 @@ namespace Inlogik.CodingTest.WebApp.Error
                 var response = context.Response;
                 response.ContentType = "application/json";
 
-                var responseModel = new ProblemDetails();
+                ProblemDetails responseModel;
 
                 switch (error)
                 {
+                    case ValidationException e:
+                        response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
+                        var validationErrorsByProperty = e.Errors
+                            .GroupBy(x => x.PropertyName)
+                            .ToDictionary(x => x.Key, x => x.Select(y => y.ErrorMessage).ToArray());
+
+                        responseModel = new ValidationProblemDetails(validationErrorsByProperty);
+                        break;
+
+                    case EntityNotFoundException e:
+                        response.StatusCode = (int)HttpStatusCode.NotFound;
+                        responseModel = new ProblemDetails();
+                        break;
+
                     default:
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        responseModel = new ProblemDetails();
                         break;
                 }
 

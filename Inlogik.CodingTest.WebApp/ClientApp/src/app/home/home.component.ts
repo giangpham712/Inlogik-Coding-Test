@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Contact } from '../shared/models/contact.model';
 import { ContactModalComponent } from './contact-modal/contact-modal.component';
 import { ContactService } from './contact.service';
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
       if (!result) {
         return;
       }
-      
+
       this.contactService.updateContact(contact.id, result);
     });
   }
