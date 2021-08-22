@@ -1,8 +1,12 @@
+using FluentValidation;
 using Inlogik.CodingTest.Application;
+using Inlogik.CodingTest.Application.Dtos;
+using Inlogik.CodingTest.Application.Validators;
 using Inlogik.CodingTest.Core.Domain.Repositories;
 using Inlogik.CodingTest.Persistence;
 using Inlogik.CodingTest.Persistence.Repositories;
 using Inlogik.CodingTest.WebApp.Error;
+using Inlogik.CodingTest.WebApp.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +37,11 @@ namespace Inlogik.CodingTest.WebApp
 
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IContactRepository, ContactRepository>();
+
+            services.AddTransient<IValidator<CreateContactDto>, CreateContactValidator>();
+            services.AddTransient<IValidator<UpdateContactDto>, UpdateContactValidator>();
+
+            services.AddSingleton<IValidatorFactory, ValidatorFactory>();
 
             services
                 .AddControllersWithViews()

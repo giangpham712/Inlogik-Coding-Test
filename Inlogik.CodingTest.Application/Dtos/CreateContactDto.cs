@@ -4,10 +4,7 @@ using System.Text;
 
 namespace Inlogik.CodingTest.Application.Dtos
 {
-    public class CreateContactDto
+    public class CreateContactDto : ContactDtoBase
     {
-        public string Name { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
     }
 }

@@ -27,11 +27,16 @@ export class ContactListComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['contacts']) {
       this.dataSource.data = this.contacts;
     }
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
