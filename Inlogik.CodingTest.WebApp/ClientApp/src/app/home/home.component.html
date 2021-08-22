@@ -1,0 +1,7 @@
+<div>
+  <button mat-flat-button color="primary" (click)="addContact()">New Contact</button>
+</div>
+<app-contact-list 
+  [contacts]="contactService.contacts$ | async"
+  (edit)="editContact($event)"
+></app-contact-list>
