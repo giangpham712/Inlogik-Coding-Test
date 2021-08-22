@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs';
 import { ContactApiService } from '../core/services/api/contact-api.service';
 import { Contact } from '../shared/models/contact.model';
@@ -10,7 +11,8 @@ export class ContactService {
   contacts$ = this.contactsSource.asObservable();
 
   constructor(
-    private contactApi: ContactApiService
+    private contactApi: ContactApiService,
+    private snackBar: MatSnackBar
   ) { }
   
   loadContacts() {
@@ -24,6 +26,9 @@ export class ContactService {
       createdContact => {
         const contacts = [ ...this.contactsSource.getValue(), createdContact ];
         this.contactsSource.next(contacts);
+      },
+      error => {
+        
       }
     );
   }
@@ -42,6 +47,9 @@ export class ContactService {
         );
 
         this.contactsSource.next(contacts);
+      },
+      error => {
+
       }
     );
   }
